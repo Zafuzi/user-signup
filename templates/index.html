@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1> Sign Up </h1>
+
+    </header>
+    <main>
+        {% if not logged_in %}
+        <form method="POST" autocomplete="true">
+            <label> Username:
+                <input type="text" name="username" min="3" max="20" placeholder="username" required>
+                <span class="warning">
+                    {% if not username_is_valid %}
+                    That's not a valid username
+                    {% endif %}
+                </span>
+            </label>
+            <label> Password:
+                <input type="password" name="pass1" min="3" max="20" placeholder="password" required>
+                <span class="warning">
+                    {% if not password_is_valid %}
+                    That's not a valid password
+                    {% endif %}
+                </span>
+            </label>
+            <label> Confirm Password:
+                <input type="password" name="pass2" min="3" max="20" placeholder="password" required>
+                <span class="warning">
+                    {% if not password_is_valid %}
+                    Passwords do not match
+                    {% endif %}
+                </span>
+            </label>
+            <label> Email (Optional):
+                <input type="text" name="email" min="3" max="50" placeholder="password">
+                <span class="warning">
+                    {% if not email_is_valid %}
+                    That's not a valid email address
+                    {% endif %}
+                </span>
+            </label>
+            <input type="submit" value="Sign Up">
+        </form>
+        {% else %}
+        <h2> Welcome back {{name}}</h2>
+        {% endif %}
+    </main>
+</body>
+
+</html>
